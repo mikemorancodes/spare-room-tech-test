@@ -14,12 +14,13 @@ Run tests using the following command:
 npm test
 ```
 
-##Built with
+## Built with
 
 - nodeJS
 - mocha
 - chai
 - data-store
 
-##Author
+## Author
+
 Mike Moran
