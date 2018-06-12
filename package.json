@@ -1,0 +1,30 @@
+{
+  "name": "spare-room",
+  "version": "1.0.0",
+  "description": "tech test",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikemorancodes/spare-room-tech-test.git"
+  },
+  "keywords": [
+    "spare",
+    "room",
+    "tech",
+    "test"
+  ],
+  "author": "mikemorancodes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikemorancodes/spare-room-tech-test/issues"
+  },
+  "homepage": "https://github.com/mikemorancodes/spare-room-tech-test#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "data-store": "^3.0.1",
+    "mocha": "^5.2.0"
+  }
+}
