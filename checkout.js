@@ -1,5 +1,14 @@
 const dataset = require("./dataset");
-const Store = require("data-store");
-const store = new Store({ path: "config.json" });
+const store = require("./config");
 
-const scanItem = itemCode => {};
+const scanItem = itemCode => {
+  const checkout = store.get("checkout");
+  checkout[itemCode].count++;
+
+  store.set("checkout", checkout);
+  updateItemSubtotal(itemCode, checkout);
+};
+
+const updateItemSubtotal = (itemCode, checkout) => {};
+
+module.exports = { scanItem };
