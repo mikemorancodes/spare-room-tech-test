@@ -3,12 +3,35 @@ const store = require("./config");
 
 const scanItem = itemCode => {
   const checkout = store.get("checkout");
-  checkout[itemCode].count++;
+  checkout.items[itemCode].count++;
 
-  store.set("checkout", checkout);
   updateItemSubtotal(itemCode, checkout);
 };
 
-const updateItemSubtotal = (itemCode, checkout) => {};
+const updateItemSubtotal = (itemCode, checkout) => {
+  const { unitPrice, specialPrice } = dataset.items[itemCode];
+  const itemCount = checkout.items[itemCode].count;
+  let sub = 0;
 
-module.exports = { scanItem };
+  if (specialPrice) {
+    const [specialCount, forStr, specialAmount] = specialPrice.split(" ");
+    const dealCount = Math.floor(itemCount / +specialCount);
+    sub += dealCount * +specialPrice.split(" ")[2];
+    sub += (itemCount % +specialCount) * unitPrice;
+  } else {
+    sub += itemCount * unitPrice;
+  }
+
+  checkout.items[itemCode].subtotal = sub;
+  updateSubtotal(checkout);
+};
+
+const updateSubtotal = checkout => {
+  let sub = 0;
+  for (const item in checkout.items) {
+    sub += checkout.items[item].subtotal;
+  }
+  checkout.subtotal = sub;
+};
+
+module.exports = { scanItem, updateSubtotal };
