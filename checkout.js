@@ -2,6 +2,8 @@ const dataset = require("./dataset");
 const store = require("./config");
 
 const scanItem = itemCode => {
+  const isValidCode = Object.keys(dataset.items).some(key => key === itemCode);
+  if (!isValidCode) return "invalid input";
   const checkout = store.get("checkout");
   checkout.items[itemCode].count++;
 
